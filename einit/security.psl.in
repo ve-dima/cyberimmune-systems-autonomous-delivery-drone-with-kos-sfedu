@@ -6,7 +6,7 @@ use nk.base._
 use EDL kl.core.Core
 use EDL Einit
 
-/*use EDL wpa.WpaSupplicant*/
+use EDL wpa.WpaSupplicant
 use EDL kl.drivers.UART
 use EDL client.Test
 

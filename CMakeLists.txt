@@ -23,20 +23,20 @@ find_package (bsp REQUIRED)
 include_directories (${bsp_INCLUDE})
 
 # Add package for working with the virtual file system.
-#find_package (vfs REQUIRED)
-#include_directories (${vfs_INCLUDE})
+find_package (vfs REQUIRED)
+include_directories (${vfs_INCLUDE})
 
 # Add a package with the dhcpcd program implementation.
-#find_package (rump REQUIRED COMPONENTS DHCPCD_ENTITY)
-#include_directories (${rump_INCLUDE})
+find_package (rump REQUIRED COMPONENTS DHCPCD_ENTITY)
+include_directories (${rump_INCLUDE})
 
 # Add package with VFS program implementations.
-#find_package (precompiled_vfs REQUIRED)
-#include_directories (${precompiled_vfs_INCLUDE})
+find_package (precompiled_vfs REQUIRED)
+include_directories (${precompiled_vfs_INCLUDE})
 
 # Add package with wpa_supplicant program implementations.
-#find_package (wpa REQUIRED COMPONENTS SUPPLICANT_ENTITY)
-#include_directories (${wpa_INCLUDE})
+find_package (wpa REQUIRED COMPONENTS SUPPLICANT_ENTITY)
+include_directories (${wpa_INCLUDE})
 
 # Add a package with the GPIO client library.
 find_package (gpio REQUIRED COMPONENTS CLIENT_LIB ENTITY)

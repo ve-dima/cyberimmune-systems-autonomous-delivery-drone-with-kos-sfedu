@@ -1,4 +1,4 @@
-#include "fcc.h"
+#include "sdk_net.h"
 
 int get_request(std::string address, uint port, std::string query, std::string& response)
 {
@@ -27,7 +27,7 @@ int get_request(std::string address, uint port, std::string query, std::string& 
 	}
 
     ssize_t resp_len;
-    char buffer[4096];
+    char buffer[1024];
 	response = "";
     while ((resp_len = recv(socket_desc, buffer, sizeof(buffer), 0)) > 0)
     	response.append(buffer, resp_len);
