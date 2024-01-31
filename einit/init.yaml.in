@@ -1,0 +1,6 @@
+entities:
+
+- name: sdk.Test
+@INIT_Test_ENTITY_CONNECTIONS@
+
+@INIT_EXTERNAL_ENTITIES@
