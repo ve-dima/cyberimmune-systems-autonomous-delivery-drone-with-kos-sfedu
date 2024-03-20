@@ -1,0 +1,41 @@
+/* Solution security policy */
+
+use nk.base._
+
+/* Including EDL files */
+use EDL Einit
+use EDL kl.core.Core
+
+use EDL drone_controller.AutopilotConnector
+use EDL drone_controller.CredentialManager
+use EDL drone_controller.FlightController
+use EDL drone_controller.NavigationSystem
+use EDL drone_controller.PeripheryController
+use EDL drone_controller.ServerConnector
+
+@INIT_EXTERNAL_ENTITIES@
+
+/* Execution of entities */
+execute {
+    grant ()
+}
+
+/* Request messages */
+request {
+    grant ()
+}
+
+/* Response messages */
+response {
+    grant ()
+}
+
+/* Error calls */
+error {
+    grant ()
+}
+
+/* Security calls */
+security {
+    grant ()
+}
