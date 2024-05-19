@@ -1,24 +1,37 @@
-# Киберимунный автономный квадрокоптер
+# Квалификационное задание
 
-Проект представляет собой набор инструментов и решений для создания киберимунного автономного квадрокоптера. Состоит из [ОрВД](orvd) и [наземной станции](planner), [прошивки для квадрокоптера](ardupilot), [симулятора](ardupilot), [модуля безопасности](kos), [документации](docs).
+Этапы и основные пункты выполнения задания
 
-Содержание репозитория:
+## Задача
 
-- [/ardupilot](ardupilot) - прошивка для квадрокоптера и симулятор
-- [/docs](docs) - документация
-- [/kos](kos) - модуль безопасности
-- [/orvd](orvd) - Система организации воздушного движения
-- [/planner](planner) - APM Planner 2 под Linux (наземная станция)
-- [/tests](tests) - тесты проекта
+Описание задачи из репозитория доступно по [ссылке](https://github.com/cyberimmunity-edu/cyberimmune-systems-autonomous-delivery-drone-with-kos/blob/main/docs/QUALIFICATION.md#%D0%B2%D1%8B%D0%B2%D0%B5%D1%81%D1%82%D0%B8-%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82-%D0%B8-%D0%B2%D1%8B%D1%81%D0%BE%D1%82%D1%8B-%D0%BC%D0%B5%D1%81%D1%82%D0%BE%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%BE%D0%BA%D0%BE%D0%BF%D1%82%D0%B5%D1%80%D0%B0-%D0%B2-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BC%D0%BE%D0%BC%D0%B5%D0%BD%D1%82).
 
-## Квалификация
 
-Читайте об условиях [квалификации в документе](docs/QUALIFICATION.md) - [Квалификация](docs/QUALIFICATION.md).
+```
+1. Ознакомиться с [программным интерфейсом](https://github.com/cyberimmunity-edu/cyberimmune-systems-autonomous-delivery-drone-with-kos/blob/main/docs/API.md) бортового модуля безопасности
+2. Используя вызовы программного интерфейса, отобразить в текстовом выводе координаты и высоту местоположения квадрокоптера в каждый момент (не чаще раза в секунду)
+```
 
-## Документация
+## Краткое описание решения
 
-- [API](docs/API.md) - программный интерфейс модуля безопасности.
-- [Архитектура](docs/ARCHITECTURE.md) - архитектурные диаграмы помогающие понять проект.
-- [Разработка](docs/DEVELOPMENT.md) - документация для разработчика помогающая работать с проектом (установка, настройка, запуск).
-- [Квалификация](docs/QUALIFICATION.md) - квалификационные задания для участников **Киберимунной автономности** на [Архипелаге 2024](https://xn--2035-43davo0a5a6bk9d.xn--p1ai/).
-- [Инструменты](docs/TOOLS.md) - описание инструментов входящих в решение и полезные материалы по работе с ними.
+Для выполнения задания был изменён код модуля безопасности [KOS](https://github.com/ve-dima/cyberimmune-systems-autonomous-delivery-drone-with-kos-sfedu/tree/main/kos). В цикле, выполняющемся после получения команды *ARM*, мы добавили вызов функции [getCoords](https://github.com/cyberimmunity-edu/cyberimmune-systems-autonomous-delivery-drone-with-kos/blob/main/docs/API.md#int-getcoordsint32_t-latitude-int32_t-longitude-int32_t-altitude) из программного интерфейса компонента безопасности. Затем, в соответствии с документацией, широта и долгота были переведены в градусы, а высота - в метры.
+
+## Код, выполняющий поставленную задачу
+
+Ознакомиться с кодом можно в файле ```kos/flight_controller/src/main.cpp``` или в [коммите](https://github.com/ve-dima/cyberimmune-systems-autonomous-delivery-drone-with-kos-sfedu/commit/906008416624b538f8d3e0c4e431a537f3230569).
+
+```
+ while (true)
+    {
+        int32_t lat, lon, alt;
+        getCoords(lat, lon, alt);
+        fprintf(stderr, "\n\n---Pos---\nLat: %.4f\nLon: %.4f\nAlt: %2.f\n---Hello from TSL---\n\n",
+                lat * 1e-7, lon * 1e-7, alt * 1e-2);
+        sleep(2);
+    }
+```
+
+## Подтверждение
+Ниже представлен скриншот из консоли, где модно увидеть сообщение при выполнении БПЛА полётного задания.
+
+![Сообщение с координатами](docs/posPrint.jpeg)
