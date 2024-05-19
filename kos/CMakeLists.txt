@@ -1,5 +1,8 @@
 cmake_minimum_required (VERSION 3.12)
-
+#for build without docker startup
+#todo: add in ide settings
+# set(CMAKE_TOOLCHAIN_FILE /opt/KasperskyOS-Local-Edition/toolchain/share/toolchain-aarch64-kos-gcc.cmake)
+# set(CMAKE_FIND_ROOT_PATH /opt/KasperskyOS-Local-Edition/sysroot-aarch64-kos)
 project (DroneController)
 
 include (platform)
