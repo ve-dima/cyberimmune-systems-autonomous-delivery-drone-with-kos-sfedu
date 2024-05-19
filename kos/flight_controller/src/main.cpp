@@ -127,7 +127,13 @@ int main(void) {
     //Also we need to check on ORVD, whether the flight is still allowed or it is need to be paused
 
     while (true)
-        sleep(1000);
+    {
+        int32_t lat, lon, alt;
+        getCoords(lat, lon, alt);
+        fprintf(stderr, "\n\n---Pos---\nLat: %.4f\nLon: %.4f\nAlt: %2.f\n---Hello from TSL---\n\n",
+                lat * 1e-7, lon * 1e-7, alt * 1e-2);
+        sleep(2);
+    }
 
     return EXIT_SUCCESS;
 }
